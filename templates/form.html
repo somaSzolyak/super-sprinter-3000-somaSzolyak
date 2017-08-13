@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if story %}
+            <title>Super Sprinter 3000 - Edit Story</title>
+        {% else %}
+            <title>Super Sprinter 3000 - Add new Story</title>
+        {% endif %}
+    </head>
+    <body>
+        {% if story %}
+            <h1>User Story Manager - Edit Story</h1>
+            <form action="/story/{{ story[0] }}" method="post">
+            <p>
+                <label for="story-title">Story title</label><br>
+                <textarea name="story-title" rows="1" cols="50">{{ story[1] }}</textarea>
+            </p>
+            <p>
+                <label for="user-title">User Story</label><br>
+                <textarea name="user-story" rows="5" cols="50">{{ story[2] }}</textarea>
+            </p>
+            <p>
+                <label for="acceptance-criteria">Acceptance criteria</label><br>
+                <textarea name="acceptance-criteria" rows="5" cols="50">{{ story[3] }}</textarea>
+            </p>
+            <p>
+                <label for="value">Business Value</label><br>
+                <input type="number" id="value" name="value" min="100" max="1500" step="100" value="{{story[4]}}" required>
+            </p>
+            <p>
+                <label for="estimation">Estimation(h)</label><br>
+                <input type="number" id="estimation" name="estimation" min="0.5" max="40" step="0.5" value="{{story[5]}}" required>
+            </p>
+            <p>
+                <label for="status">Status</label><br>
+                <select id="status" name="status" required>
+                    <option value="Planning" {% if story[6] == "Planning" %} selected {% endif %}>Planning</option>
+                    <option value="TODO" {% if story[6] == "TODO" %} selected {% endif %}>TODO</option>
+                    <option value="In Progress" {% if story[6] == "In Progress" %} selected {% endif %}>In Progress</option>
+                    <option value="Review" {% if story[6] == "Review" %} selected {% endif %}>Review</option>
+                    <option value="Done" {% if story[6] == "Done" %} selected {% endif %}>Done</option>
+                </select>
+            </p>
+            <button type="submit">Update</button>
+        </form>
+        <p>
+            <a href="/">Back to the stories</a>
+        </p>
+        {% else %}
+            <h1>User Story Manager - Add Story</h1>
+            <form action="/story" method="post">
+                <p>
+                    <label for="story-title">Story title</label><br>
+                    <textarea name="story-title" rows="1" cols="50"></textarea>
+                </p>
+                <p>
+                    <label for="user-title">User Story</label><br>
+                    <textarea name="user-story" rows="5" cols="50"></textarea>
+                </p>
+                <p>
+                    <label for="acceptance-criteria">Acceptance criteria</label><br>
+                    <textarea name="acceptance-criteria" rows="5" cols="50"></textarea>
+                </p>
+                <p>
+                    <label for="value">Business Value</label><br>
+                    <input type="number" id="value" name="value" min="100" max="1500" step="100" required>
+                </p>
+                <p>
+                    <label for="estimation">Estimation(h)</label><br>
+                    <input type="number" id="estimation" name="estimation" min="0.5" max="40" step="0.5" required>
+                </p>
+                <p>
+                    <label for="status">Status</label><br>
+                    <select id="status" name="status" required>
+                        <option value="Planning">Planning</option>
+                        <option value="TODO">TODO</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Review">Review</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </p>
+                <button type="submit">Create</button>
+            </form>
+        {% endif %}
+    </body>
+</html>

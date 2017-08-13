@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Super Sprinter 3000</title>
+        <style>
+           table {border: 2px solid black;border-collapse: collapse;}
+            th, td {font-weight: normal;
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    text-align: left;}
+        </style>
+    </head>
+    <body>
+        <h1>User Story Manager</h1>
+        <p>
+            {% if table is not none %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Story Title</th>
+                        <th>User Story</th>
+                        <th>Acceptance Criteria</th>
+                        <th>Business Value</th>
+                        <th>Estimation(h)</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for story in table %}
+                        <tr>
+                            {% for item in story %}
+                            {% autoescape false %}
+                                <td>{{ item }}</td>
+                            {% endautoescape %}
+                            {% endfor %}
+                            <td><a href="edit-note/{{ story[0] }}"><button id="edit">&#9998;</button></a></td>
+                            <td><a href="delete-story/{{ story[0] }}"><button id="delete">&#x2717;</button></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                There is no saved notes.
+            {% endif %}
+        </p>
+        <p>
+            <br>
+            <a href="new-note"><button id="new-story">New Story</button></a>
+        </p>
+    </body>
+</html>

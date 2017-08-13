@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>New Flask Note</title>
+    </head>
+    <body>
+        <h1>New note</h1>
+        <form action="/save-new-note" method="post">
+            <textarea name="note" rows="8" cols="80"></textarea>
+            <button type="submit">Save new note!</button>
+        </form>
+        <p>
+            <a href="/">Back to the notes</a>
+        </p>
+    </body>
+</html>
